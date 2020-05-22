@@ -6,6 +6,8 @@
     <modules>
         <module>web</module>
         <module>generate-code</module>
+        <module>demo-security</module>
+        <module>demo-common</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -23,8 +25,6 @@
         <java.version>1.8</java.version>
         <mybatis.version>3.4.6</mybatis.version>
         <mysql-connector.version>8.0.15</mysql-connector.version>
-        <pagehelper-starter.version>1.2.10</pagehelper-starter.version>
-        <pagehelper.version>5.1.8</pagehelper.version>
         <mybatis-generator.version>1.3.7</mybatis-generator.version>
         <swagger2.version>2.7.0</swagger2.version>
     </properties>
@@ -81,12 +81,6 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql-connector.version}</version>
         </dependency>
-        <!--MyBatis分页插件starter-->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>${pagehelper-starter.version}</version>
-        </dependency>
         <!--Swagger-UI API文档生产工具-->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -98,6 +92,14 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger2.version}</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>4.5.7</version>
+        </dependency>
+
     </dependencies>
 
     <build>
