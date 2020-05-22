@@ -1,22 +1,29 @@
 package com.example.demo.common.page;
 
 import com.github.pagehelper.PageInfo;
+import lombok.Data;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
 
 /**
- * @ClassName CommonPage
+ * @ClassName CommonPageResult
  * @Description 分页数据封装类
  * @Author nannan.zhang
  * @Date 2020/5/11 15:51
  * @Version 1.0
  **/
+@Data
 public class CommonPageResult<T> {
+    //当前页
     private Integer pageNum;
+    //每页的数量
     private Integer pageSize;
+    //总页数
     private Integer totalPage;
+    //总记录数
     private Long total;
+    //结果集
     private List<T> list;
 
     /**
@@ -44,45 +51,5 @@ public class CommonPageResult<T> {
         result.setTotal(pageInfo.getTotalElements());
         result.setList(pageInfo.getContent());
         return result;
-    }
-
-    public Integer getPageNum() {
-        return pageNum;
-    }
-
-    public void setPageNum(Integer pageNum) {
-        this.pageNum = pageNum;
-    }
-
-    public Integer getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public Integer getTotalPage() {
-        return totalPage;
-    }
-
-    public void setTotalPage(Integer totalPage) {
-        this.totalPage = totalPage;
-    }
-
-    public List<T> getList() {
-        return list;
-    }
-
-    public void setList(List<T> list) {
-        this.list = list;
-    }
-
-    public Long getTotal() {
-        return total;
-    }
-
-    public void setTotal(Long total) {
-        this.total = total;
     }
 }

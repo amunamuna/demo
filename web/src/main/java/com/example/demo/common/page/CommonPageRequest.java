@@ -1,40 +1,19 @@
 package com.example.demo.common.page;
 
+import lombok.Data;
+
 /**
- * @ClassName PageVo
+ * @ClassName CommonPageRequest
  * @Description 分页请求
  * @Author nannan.zhang
  * @Date 2020/5/11 15:49
  * @Version 1.0
  **/
+@Data
 public class CommonPageRequest<T> {
-    private int pageSize;
-
+    //当前页
     private int pageIndex;
-
+    //每页的数量
+    private int pageSize;
     private T data;
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public int getPageIndex() {
-        return pageIndex;
-    }
-
-    public void setPageIndex(int pageIndex) {
-        this.pageIndex = pageIndex;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
 }

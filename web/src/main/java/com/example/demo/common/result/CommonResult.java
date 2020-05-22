@@ -1,5 +1,7 @@
 package com.example.demo.common.result;
 
+import lombok.Data;
+
 /**
  * @ClassName CommonResult
  * @Description TODO
@@ -7,6 +9,7 @@ package com.example.demo.common.result;
  * @Date 2020/5/11 15:59
  * @Version 1.0
  **/
+@Data
 public class CommonResult<T> {
     private long code;
     private String message;
@@ -90,29 +93,5 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> forbidden(T data) {
         return new CommonResult<T>(ResultCode.FORBIDDEN.getCode(), ResultCode.FORBIDDEN.getMessage(), data);
-    }
-
-    public long getCode() {
-        return code;
-    }
-
-    public void setCode(long code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
     }
 }
