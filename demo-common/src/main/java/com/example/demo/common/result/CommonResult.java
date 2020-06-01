@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * @ClassName CommonResult
- * @Description TODO
+ * @Description 统一结果类
  * @Author nannan.zhang
  * @Date 2020/5/11 15:59
  * @Version 1.0
