@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true" scanPeriod="1 seconds">
+
+  <contextName>logback</contextName>
+  <!--自定义listener,程序启动时传参,以当前文件为例,server.name-->
+  <contextListener class="com.bankht.cis.tps.apps.LoggerStartupListener" />
+  <!--定义参数,后面可以通过${app.name}使用 -->
+  <property name="system.name" value="GCSC-D" />
+  <property name="log.home_dir" value="/route" />
+
+  <!--系统日志 -->
+  <property name="systemLogFile.maxFileSize" value="100MB" />
+  <property name="systemLogFile.maxHistory" value="30" />
+  <!-- <property name="SYSTEMLOGFILE.totalSizeCap" value="20GB" /> -->
+
+  <!--自定义 SizeAndTimeBasedRollingPolicy 一天多个文件 -->
+  <property name="mTraceFile.maxFileSize" value="200MB" />
+  <property name="mTraceFile.maxHistory" value="7" />
+  <!-- <property name="mTraceFile.totalSizeCap" value="20GB" /> -->
+
+  <!--自定义 TimeBasedRollingPolicy 一天一个日志文件 -->
+  <property name="mMonitorFile.maxHistory" value="7" />
+  <!-- <property name="mMonitorFile.totalSizeCap" value="7GB" /> -->
+
+
+  <!-- ConsoleAppender 控制台输出日志 -->
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>
+        <!-- 设置日志输出格式 -->
+        %d{HH:mm:ss.SSS} [%t] %-5p %C{1} : %msg%n
+      </pattern>
+    </encoder>
+  </appender>
+
+  <!--系统日志 SizeAndTimeBasedRollingPolicy 一天多个文件-->
+  <appender name="SYSTEMLOGFILE"
+    class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+    <rollingPolicy
+      class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <!-- 按天轮转 -->
+      <fileNamePattern>${log.home_dir}/systemLogFile/route-trace-${server.name}-%d{yyyyMMdd}.%i.log</fileNamePattern>
+      <!-- 日志文件的最大大小 -->
+      <maxFileSize>${systemLogFile.maxFileSize}</maxFileSize>
+      <!--日志文件保留天数：用来控制最多保留多少数量的归档文件，将会异步删除旧的文件 -->
+      <maxHistory>${systemLogFile.maxHistory}</maxHistory>
+      <!-- <totalSizeCap>${SYSTEMLOGFILE.totalSizeCap}</totalSizeCap> -->
+    </rollingPolicy>
+
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}[%t][%c][%p]-%msg%n</pattern>
+    </encoder>
+  </appender>
+
+
+  <!--自定义 SizeAndTimeBasedRollingPolicy 一天多个文件-->
+  <appender name="MTRACEFILE"
+    class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+    <rollingPolicy
+      class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <!-- 按天轮转 -->
+      <fileNamePattern>${log.home_dir}/mTraceFile/${system.name}.${server.name}.%d{yyyyMMdd}.%i.log</fileNamePattern>
+      <!-- 日志文件的最大大小 -->
+      <maxFileSize>${mTraceFile.maxFileSize}</maxFileSize>
+      <!--日志文件保留天数：用来控制最多保留多少数量的归档文件，将会异步删除旧的文件 -->
+      <maxHistory>${mTraceFile.maxHistory}</maxHistory>
+      <!--这个可选属性用来控制所有归档文件总的大小。当达到这个大小后，旧的归档文件将会被异步的删除。 使用这个属性时还需要设置 maxHistory
+        属性。而且，maxHistory 将会被作为第一条件，该属性作为第二条件。 -->
+      <!-- <totalSizeCap>${mTraceFile.totalSizeCap}</totalSizeCap> -->
+    </rollingPolicy>
+
+    <encoder>
+      <pattern>%msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!--自定义 TimeBasedRollingPolicy 一天一个日志文件 -->
+  <appender name="MMONITORFILE"
+    class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- 日志文件输出的文件名 -->
+      <fileNamePattern>${log.home_dir}/mMonitorFile/${system.name}.${server.name}.%d{yyyyMMdd}.log</fileNamePattern>
+      <!-- 日志文件保留天数 -->
+      <maxHistory>${mMonitorFile.maxHistory}</maxHistory>
+      <!-- 所有日志文件的总大小空间 -->
+      <!-- <totalSizeCap>${mMonitorFile.totalSizeCap}</totalSizeCap> -->
+    </rollingPolicy>
+
+    <encoder>
+      <!-- 格式化输出 -->
+      <pattern>%d{yyyy-MM-dd};%d{HH:mm:ss.SSS};GCSC-D;${server.name};%msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!--root是默认的logger 这里设定打印级别是INFO
+  level:用来设置打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF
+  日志级别 级别越小,打印信息越详细
+  TRACE < DEBUG < INFO <  WARN < ERROR
+  -->
+  <root level="INFO">
+    <!--定义了两个appender，日志会通过往这两个appender里面写 -->
+    <appender-ref ref="CONSOLE" />
+    <appender-ref ref="SYSTEMLOGFILE" />
+  </root>
+
+  <!--通过 LoggerFactory.getLogger("mTraceLogger") 可以获取到这个logger -->
+  <!--由于这个logger自动继承了root的appender，root中已经有mTraceLogger的appender了，自己这边又引入了mTraceLogger的appender -->
+  <!--如果没有设置 additivity="false" ,就会导致一条日志在控制台输出两次的情况 -->
+  <!--additivity表示要不要使用rootLogger配置的appender进行输出 -->
+  <logger name="mTraceLogger" level="INFO" additivity="false">
+    <appender-ref ref="MTRACEFILE" />
+  </logger>
+
+  <logger name="mMonitorLogger" level="INFO" additivity="false">
+    <appender-ref ref="MMONITORFILE" />
+  </logger>
+
+</configuration>
