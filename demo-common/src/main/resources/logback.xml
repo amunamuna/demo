@@ -3,10 +3,10 @@
 
   <contextName>logback</contextName>
   <!--自定义listener,程序启动时传参,以当前文件为例,server.name-->
-  <contextListener class="com.bankht.cis.tps.apps.LoggerStartupListener" />
+  <contextListener class="com.example.demo.common.logger.LoggerStartupListener" />
   <!--定义参数,后面可以通过${app.name}使用 -->
   <property name="system.name" value="GCSC-D" />
-  <property name="log.home_dir" value="/route" />
+  <property name="log.home_dir" value="/Users/zhangnannan/ideaProjects/route" />
 
   <!--系统日志 -->
   <property name="systemLogFile.maxFileSize" value="100MB" />
@@ -95,7 +95,8 @@
   </appender>
 
   <!--root是默认的logger 这里设定打印级别是INFO
-  level:用来设置打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF
+  level:用来设置级别，不区分大小写：TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF
+    root logger不能设置为INHERITED或NULL
   日志级别 级别越小,打印信息越详细
   TRACE < DEBUG < INFO <  WARN < ERROR
   -->
@@ -105,11 +106,21 @@
     <appender-ref ref="SYSTEMLOGFILE" />
   </root>
 
-  <!--通过 LoggerFactory.getLogger("mTraceLogger") 可以获取到这个logger -->
-  <!--由于这个logger自动继承了root的appender，root中已经有mTraceLogger的appender了，自己这边又引入了mTraceLogger的appender -->
-  <!--如果没有设置 additivity="false" ,就会导致一条日志在控制台输出两次的情况 -->
-  <!--additivity表示要不要使用rootLogger配置的appender进行输出 -->
-  <logger name="mTraceLogger" level="INFO" additivity="false">
+  <!--
+    通过 LoggerFactory.getLogger("mTraceLogger") 可以获取到这个logger
+    level:值不区分大小写:TRACE，DEBUG，INFO，WARN，ERROR，ALL或OFF
+      日志输出级别 级别越小,打印信息越详细,级别最大，打印信息最为简略
+        TRACE < DEBUG < INFO <  WARN < ERROR
+        TRACE 包括 TRACE / DEBUG / INFO / WARN / ERROR 的日志级别都打印
+        DEBUG 包括 DEBUG / INFO / WARN / ERROR 的日志级别都打印
+        INFO  包括 INFO / WARN / ERROR 的日志级别都打印
+        WARN  包括 WARN / ERROR 的日志级别都打印
+        ERROR 只打印 ERROR 的日志级别都打印
+    由于自定义logger会自动继承了root的appender，可以通过additivity设置.
+      如果没有设置 additivity="false" ,就会导致一条日志在控制台输出两次的情况
+      additivity表示要不要使用rootLogger配置的appender进行输出
+  -->
+  <logger name="mTraceLogger" level="ERROR" additivity="false">
     <appender-ref ref="MTRACEFILE" />
   </logger>
 

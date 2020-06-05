@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
  **/
 public class LoggerUtils {
   //自定义logger
-  static Logger traceLogger = LoggerFactory.getLogger(LogFileName.M_TRACE_LOGGER.getLogFileName());
-  static Logger monitorLogger = LoggerFactory.getLogger(LogFileName.M_MONITOR_LOGGER.getLogFileName());
+  public static Logger traceLogger = LoggerFactory.getLogger(LogFileName.M_TRACE_LOGGER.getLogFileName());
+  public static Logger monitorLogger = LoggerFactory.getLogger(LogFileName.M_MONITOR_LOGGER.getLogFileName());
 
 }
