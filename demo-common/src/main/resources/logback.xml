@@ -3,7 +3,7 @@
 
   <contextName>logback</contextName>
   <!--自定义listener,程序启动时传参,以当前文件为例,server.name-->
-  <contextListener class="com.example.demo.common.logger.LoggerStartupListener" />
+  <contextListener class="com.nadou.demo.common.logger.LoggerStartupListener" />
   <!--定义参数,后面可以通过${app.name}使用 -->
   <property name="system.name" value="GCSC-D" />
   <property name="log.home_dir" value="/Users/zhangnannan/ideaProjects/route" />

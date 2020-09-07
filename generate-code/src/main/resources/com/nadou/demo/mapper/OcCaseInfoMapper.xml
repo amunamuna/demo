@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nadou.demo.mapper.OcCaseInfoMapper">
+  <resultMap id="BaseResultMap" type="com.nadou.demo.model.OcCaseInfo">
+    <id column="case_id" jdbcType="CHAR" property="caseId" />
+    <result column="cust_num" jdbcType="VARCHAR" property="custNum" />
+    <result column="cust_name" jdbcType="VARCHAR" property="custName" />
+    <result column="crdt_tp" jdbcType="CHAR" property="crdtTp" />
+    <result column="cst_crdt_no" jdbcType="CHAR" property="cstCrdtNo" />
+    <result column="coll_level" jdbcType="CHAR" property="collLevel" />
+    <result column="coll_grp" jdbcType="VARCHAR" property="collGrp" />
+    <result column="coll_grp_new" jdbcType="VARCHAR" property="collGrpNew" />
+    <result column="thmon_tsk_tp" jdbcType="CHAR" property="thmonTskTp" />
+    <result column="cur_entrust_agency" jdbcType="VARCHAR" property="curEntrustAgency" />
+    <result column="cur_entrust_batch" jdbcType="VARCHAR" property="curEntrustBatch" />
+    <result column="cur_patch_mode" jdbcType="CHAR" property="curPatchMode" />
+    <result column="batch_start_date" jdbcType="DATE" property="batchStartDate" />
+    <result column="entrust_period" jdbcType="INTEGER" property="entrustPeriod" />
+    <result column="release_start_date" jdbcType="DATE" property="releaseStartDate" />
+    <result column="changing_hands" jdbcType="CHAR" property="changingHands" />
+    <result column="bank_address" jdbcType="VARCHAR" property="bankAddress" />
+    <result column="case_status" jdbcType="CHAR" property="caseStatus" />
+    <result column="case_op_code" jdbcType="VARCHAR" property="caseOpCode" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="baseintfee" jdbcType="DECIMAL" property="baseintfee" />
+    <result column="batch_status" jdbcType="CHAR" property="batchStatus" />
+    <result column="lastEntrustAgency" jdbcType="VARCHAR" property="lastentrustagency" />
+    <result column="exten_field1" jdbcType="VARCHAR" property="extenField1" />
+    <result column="exten_field2" jdbcType="VARCHAR" property="extenField2" />
+    <result column="exten_field3" jdbcType="VARCHAR" property="extenField3" />
+    <result column="exten_field4" jdbcType="VARCHAR" property="extenField4" />
+    <result column="exten_field5" jdbcType="VARCHAR" property="extenField5" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    case_id, cust_num, cust_name, crdt_tp, cst_crdt_no, coll_level, coll_grp, coll_grp_new, 
+    thmon_tsk_tp, cur_entrust_agency, cur_entrust_batch, cur_patch_mode, batch_start_date, 
+    entrust_period, release_start_date, changing_hands, bank_address, case_status, case_op_code, 
+    create_time, update_time, baseintfee, batch_status, lastEntrustAgency, exten_field1, 
+    exten_field2, exten_field3, exten_field4, exten_field5
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from oc_case_info
+    where case_id = #{caseId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from oc_case_info
+    where case_id = #{caseId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nadou.demo.model.OcCaseInfo">
+    insert into oc_case_info (case_id, cust_num, cust_name, 
+      crdt_tp, cst_crdt_no, coll_level, 
+      coll_grp, coll_grp_new, thmon_tsk_tp, 
+      cur_entrust_agency, cur_entrust_batch, cur_patch_mode, 
+      batch_start_date, entrust_period, release_start_date, 
+      changing_hands, bank_address, case_status, 
+      case_op_code, create_time, update_time, 
+      baseintfee, batch_status, lastEntrustAgency, 
+      exten_field1, exten_field2, exten_field3, 
+      exten_field4, exten_field5)
+    values (#{caseId,jdbcType=CHAR}, #{custNum,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR}, 
+      #{crdtTp,jdbcType=CHAR}, #{cstCrdtNo,jdbcType=CHAR}, #{collLevel,jdbcType=CHAR}, 
+      #{collGrp,jdbcType=VARCHAR}, #{collGrpNew,jdbcType=VARCHAR}, #{thmonTskTp,jdbcType=CHAR}, 
+      #{curEntrustAgency,jdbcType=VARCHAR}, #{curEntrustBatch,jdbcType=VARCHAR}, #{curPatchMode,jdbcType=CHAR}, 
+      #{batchStartDate,jdbcType=DATE}, #{entrustPeriod,jdbcType=INTEGER}, #{releaseStartDate,jdbcType=DATE}, 
+      #{changingHands,jdbcType=CHAR}, #{bankAddress,jdbcType=VARCHAR}, #{caseStatus,jdbcType=CHAR}, 
+      #{caseOpCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{baseintfee,jdbcType=DECIMAL}, #{batchStatus,jdbcType=CHAR}, #{lastentrustagency,jdbcType=VARCHAR}, 
+      #{extenField1,jdbcType=VARCHAR}, #{extenField2,jdbcType=VARCHAR}, #{extenField3,jdbcType=VARCHAR}, 
+      #{extenField4,jdbcType=VARCHAR}, #{extenField5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nadou.demo.model.OcCaseInfo">
+    insert into oc_case_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="caseId != null">
+        case_id,
+      </if>
+      <if test="custNum != null">
+        cust_num,
+      </if>
+      <if test="custName != null">
+        cust_name,
+      </if>
+      <if test="crdtTp != null">
+        crdt_tp,
+      </if>
+      <if test="cstCrdtNo != null">
+        cst_crdt_no,
+      </if>
+      <if test="collLevel != null">
+        coll_level,
+      </if>
+      <if test="collGrp != null">
+        coll_grp,
+      </if>
+      <if test="collGrpNew != null">
+        coll_grp_new,
+      </if>
+      <if test="thmonTskTp != null">
+        thmon_tsk_tp,
+      </if>
+      <if test="curEntrustAgency != null">
+        cur_entrust_agency,
+      </if>
+      <if test="curEntrustBatch != null">
+        cur_entrust_batch,
+      </if>
+      <if test="curPatchMode != null">
+        cur_patch_mode,
+      </if>
+      <if test="batchStartDate != null">
+        batch_start_date,
+      </if>
+      <if test="entrustPeriod != null">
+        entrust_period,
+      </if>
+      <if test="releaseStartDate != null">
+        release_start_date,
+      </if>
+      <if test="changingHands != null">
+        changing_hands,
+      </if>
+      <if test="bankAddress != null">
+        bank_address,
+      </if>
+      <if test="caseStatus != null">
+        case_status,
+      </if>
+      <if test="caseOpCode != null">
+        case_op_code,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="baseintfee != null">
+        baseintfee,
+      </if>
+      <if test="batchStatus != null">
+        batch_status,
+      </if>
+      <if test="lastentrustagency != null">
+        lastEntrustAgency,
+      </if>
+      <if test="extenField1 != null">
+        exten_field1,
+      </if>
+      <if test="extenField2 != null">
+        exten_field2,
+      </if>
+      <if test="extenField3 != null">
+        exten_field3,
+      </if>
+      <if test="extenField4 != null">
+        exten_field4,
+      </if>
+      <if test="extenField5 != null">
+        exten_field5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="caseId != null">
+        #{caseId,jdbcType=CHAR},
+      </if>
+      <if test="custNum != null">
+        #{custNum,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null">
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="crdtTp != null">
+        #{crdtTp,jdbcType=CHAR},
+      </if>
+      <if test="cstCrdtNo != null">
+        #{cstCrdtNo,jdbcType=CHAR},
+      </if>
+      <if test="collLevel != null">
+        #{collLevel,jdbcType=CHAR},
+      </if>
+      <if test="collGrp != null">
+        #{collGrp,jdbcType=VARCHAR},
+      </if>
+      <if test="collGrpNew != null">
+        #{collGrpNew,jdbcType=VARCHAR},
+      </if>
+      <if test="thmonTskTp != null">
+        #{thmonTskTp,jdbcType=CHAR},
+      </if>
+      <if test="curEntrustAgency != null">
+        #{curEntrustAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="curEntrustBatch != null">
+        #{curEntrustBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="curPatchMode != null">
+        #{curPatchMode,jdbcType=CHAR},
+      </if>
+      <if test="batchStartDate != null">
+        #{batchStartDate,jdbcType=DATE},
+      </if>
+      <if test="entrustPeriod != null">
+        #{entrustPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="releaseStartDate != null">
+        #{releaseStartDate,jdbcType=DATE},
+      </if>
+      <if test="changingHands != null">
+        #{changingHands,jdbcType=CHAR},
+      </if>
+      <if test="bankAddress != null">
+        #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="caseStatus != null">
+        #{caseStatus,jdbcType=CHAR},
+      </if>
+      <if test="caseOpCode != null">
+        #{caseOpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baseintfee != null">
+        #{baseintfee,jdbcType=DECIMAL},
+      </if>
+      <if test="batchStatus != null">
+        #{batchStatus,jdbcType=CHAR},
+      </if>
+      <if test="lastentrustagency != null">
+        #{lastentrustagency,jdbcType=VARCHAR},
+      </if>
+      <if test="extenField1 != null">
+        #{extenField1,jdbcType=VARCHAR},
+      </if>
+      <if test="extenField2 != null">
+        #{extenField2,jdbcType=VARCHAR},
+      </if>
+      <if test="extenField3 != null">
+        #{extenField3,jdbcType=VARCHAR},
+      </if>
+      <if test="extenField4 != null">
+        #{extenField4,jdbcType=VARCHAR},
+      </if>
+      <if test="extenField5 != null">
+        #{extenField5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nadou.demo.model.OcCaseInfo">
+    update oc_case_info
+    <set>
+      <if test="custNum != null">
+        cust_num = #{custNum,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null">
+        cust_name = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="crdtTp != null">
+        crdt_tp = #{crdtTp,jdbcType=CHAR},
+      </if>
+      <if test="cstCrdtNo != null">
+        cst_crdt_no = #{cstCrdtNo,jdbcType=CHAR},
+      </if>
+      <if test="collLevel != null">
+        coll_level = #{collLevel,jdbcType=CHAR},
+      </if>
+      <if test="collGrp != null">
+        coll_grp = #{collGrp,jdbcType=VARCHAR},
+      </if>
+      <if test="collGrpNew != null">
+        coll_grp_new = #{collGrpNew,jdbcType=VARCHAR},
+      </if>
+      <if test="thmonTskTp != null">
+        thmon_tsk_tp = #{thmonTskTp,jdbcType=CHAR},
+      </if>
+      <if test="curEntrustAgency != null">
+        cur_entrust_agency = #{curEntrustAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="curEntrustBatch != null">
+        cur_entrust_batch = #{curEntrustBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="curPatchMode != null">
+        cur_patch_mode = #{curPatchMode,jdbcType=CHAR},
+      </if>
+      <if test="batchStartDate != null">
+        batch_start_date = #{batchStartDate,jdbcType=DATE},
+      </if>
+      <if test="entrustPeriod != null">
+        entrust_period = #{entrustPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="releaseStartDate != null">
+        release_start_date = #{releaseStartDate,jdbcType=DATE},
+      </if>
+      <if test="changingHands != null">
+        changing_hands = #{changingHands,jdbcType=CHAR},
+      </if>
+      <if test="bankAddress != null">
+        bank_address = #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="caseStatus != null">
+        case_status = #{caseStatus,jdbcType=CHAR},
+      </if>
+      <if test="caseOpCode != null">
+        case_op_code = #{caseOpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="baseintfee != null">
+        baseintfee = #{baseintfee,jdbcType=DECIMAL},
+      </if>
+      <if test="batchStatus != null">
+        batch_status = #{batchStatus,jdbcType=CHAR},
+      </if>
+      <if test="lastentrustagency != null">
+        lastEntrustAgency = #{lastentrustagency,jdbcType=VARCHAR},
+      </if>
+      <if test="extenField1 != null">
+        exten_field1 = #{extenField1,jdbcType=VARCHAR},
+      </if>
+      <if test="extenField2 != null">
+        exten_field2 = #{extenField2,jdbcType=VARCHAR},
+      </if>
+      <if test="extenField3 != null">
+        exten_field3 = #{extenField3,jdbcType=VARCHAR},
+      </if>
+      <if test="extenField4 != null">
+        exten_field4 = #{extenField4,jdbcType=VARCHAR},
+      </if>
+      <if test="extenField5 != null">
+        exten_field5 = #{extenField5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where case_id = #{caseId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nadou.demo.model.OcCaseInfo">
+    update oc_case_info
+    set cust_num = #{custNum,jdbcType=VARCHAR},
+      cust_name = #{custName,jdbcType=VARCHAR},
+      crdt_tp = #{crdtTp,jdbcType=CHAR},
+      cst_crdt_no = #{cstCrdtNo,jdbcType=CHAR},
+      coll_level = #{collLevel,jdbcType=CHAR},
+      coll_grp = #{collGrp,jdbcType=VARCHAR},
+      coll_grp_new = #{collGrpNew,jdbcType=VARCHAR},
+      thmon_tsk_tp = #{thmonTskTp,jdbcType=CHAR},
+      cur_entrust_agency = #{curEntrustAgency,jdbcType=VARCHAR},
+      cur_entrust_batch = #{curEntrustBatch,jdbcType=VARCHAR},
+      cur_patch_mode = #{curPatchMode,jdbcType=CHAR},
+      batch_start_date = #{batchStartDate,jdbcType=DATE},
+      entrust_period = #{entrustPeriod,jdbcType=INTEGER},
+      release_start_date = #{releaseStartDate,jdbcType=DATE},
+      changing_hands = #{changingHands,jdbcType=CHAR},
+      bank_address = #{bankAddress,jdbcType=VARCHAR},
+      case_status = #{caseStatus,jdbcType=CHAR},
+      case_op_code = #{caseOpCode,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      baseintfee = #{baseintfee,jdbcType=DECIMAL},
+      batch_status = #{batchStatus,jdbcType=CHAR},
+      lastEntrustAgency = #{lastentrustagency,jdbcType=VARCHAR},
+      exten_field1 = #{extenField1,jdbcType=VARCHAR},
+      exten_field2 = #{extenField2,jdbcType=VARCHAR},
+      exten_field3 = #{extenField3,jdbcType=VARCHAR},
+      exten_field4 = #{extenField4,jdbcType=VARCHAR},
+      exten_field5 = #{extenField5,jdbcType=VARCHAR}
+    where case_id = #{caseId,jdbcType=CHAR}
+  </update>
+</mapper>
