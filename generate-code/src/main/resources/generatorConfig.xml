@@ -15,7 +15,7 @@
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
         <!--生成mapper.xml时覆盖原文件-->
         <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
-        <commentGenerator type="com.example.demo.CommentGenerator">
+        <commentGenerator type="com.nadou.demo.CommentGenerator">
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"/>
@@ -30,19 +30,19 @@
             <property name="nullCatalogMeansCurrent" value="true" />
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="com.example.demo.model" targetProject="generate-code\src\main\java"/>
+        <javaModelGenerator targetPackage="com.nadou.demo.model" targetProject="/Users/zhangnannan/ideaProjects/gitLearning/demo/generate-code/src/main/java"/>
 
-        <sqlMapGenerator targetPackage="com.example.demo.mapper" targetProject="generate-code\src\main\resources"/>
-
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.demo.mapper"
-                             targetProject="generate-code\src\main\java"/>
+        <sqlMapGenerator targetPackage="com.nadou.demo.mapper" targetProject="/Users/zhangnannan/ideaProjects/gitLearning/demo/generate-code/src/main/resources"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.nadou.demo.mapper"
+                             targetProject="/Users/zhangnannan/ideaProjects/gitLearning/demo/generate-code/src/main/java"/>
         <!--生成全部表tableName设为%-->
 <!--        <table tableName="%">-->
 <!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
 <!--        </table>-->
 
-        <table  tableName="oc_case_info"
-                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-                enableSelectByExample="false" selectByExampleQueryId="false" />
+        <!--<table  tableName="ums_admin"-->
+                <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+                <!--enableSelectByExample="false" selectByExampleQueryId="false" />-->
+        <table  tableName="ums_admin"/>
     </context>
 </generatorConfiguration>
