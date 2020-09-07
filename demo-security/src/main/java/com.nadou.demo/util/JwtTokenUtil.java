@@ -1,4 +1,4 @@
-package com.example.demo.util;
+package com.nadou.demo.util;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;

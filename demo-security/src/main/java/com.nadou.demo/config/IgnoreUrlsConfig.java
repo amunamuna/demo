@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.nadou.demo.config;
 
 import lombok.Getter;
 import lombok.Setter;

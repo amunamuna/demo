@@ -1,4 +1,4 @@
-package com.example.demo.component;
+package com.nadou.demo.component;
 
 import cn.hutool.json.JSONUtil;
 import com.nadou.demo.common.result.CommonResult;

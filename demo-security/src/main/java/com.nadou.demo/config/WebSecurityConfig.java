@@ -1,8 +1,5 @@
-package com.example.demo.config;
+package com.nadou.demo.config;
 
-import com.example.demo.component.RestAuthenticationEntryPoint;
-import com.example.demo.component.RestfulAccessDeniedHandler;
-import com.example.demo.util.JwtTokenUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,10 +12,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.nadou.demo.component.JwtAuthenticationTokenFilter;
+import com.nadou.demo.component.RestAuthenticationEntryPoint;
+import com.nadou.demo.component.RestfulAccessDeniedHandler;
+import com.nadou.demo.util.JwtTokenUtil;
+
 /**
  * @ClassName WebSecurityConfig
  * @Description 对SpringSecurity的配置的扩展，支持自定义白名单资源路径和查询用户逻辑
- * @Author nannan.zhang
+ * @Author amunamuna
  * @Date 2020/5/22 14:19
  * @Version 1.0
  **/
